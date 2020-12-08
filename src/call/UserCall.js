@@ -3,6 +3,7 @@ import { useState } from "react";
 
 var msg = "";
 var lmsg='';
+
 export async function RegisterUser(data) {
   await axios.post("http://localhost:1337/addUser", data).then(
     (response) => {
@@ -30,8 +31,10 @@ export async function FindUser(data) {
       if(response.data.token )
       {
           localStorage.setItem('token',response.data.token);
+          localStorage.setItem('role',response.data.role);
       lmsg=response.data.msg;
-      console.log(response.data.msg+" "+response.data.token)
+      
+      console.log(response.data.msg+" "+response.data.token +'  '+ response.data.role)
       }
       else if(response.data.msg)
       {
@@ -42,7 +45,7 @@ export async function FindUser(data) {
       }
       else if(response.data.per)
       {
-        lmsg=response.data.msg;
+        lmsg=response.data.per;
       console.log(response.data.per)
       }
     },

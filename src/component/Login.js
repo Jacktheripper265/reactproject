@@ -17,6 +17,11 @@ export const ULogin = () => {
         console.log(value);
         let msg= await FindUser(value);
         setMessage(msg);
+        let role=localStorage.getItem('role');
+        if(role=='admin')
+        history.push('/Admin');
+        else
+        history.push('/Reporter');
     }
  return(
      <Box align="center" justify="between" height="90vh" >
