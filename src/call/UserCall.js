@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 var msg = "";
+var lmsg='';
 export async function RegisterUser(data) {
   await axios.post("http://localhost:1337/addUser", data).then(
     (response) => {
@@ -13,8 +14,7 @@ export async function RegisterUser(data) {
         console.log(response);
         msg = "Sucessfully Registered";
       }
-      //   console.log(response);
-      //   return response;
+     
     },
     (error) => {
       console.log(error);
@@ -23,13 +23,32 @@ export async function RegisterUser(data) {
   return msg;
 }
 
-export function FindUser(data) {
-  axios.post("http://localhost:1337/findUser", data).then(
+export async function FindUser(data) {
+  await axios.post("http://localhost:1337/findUser", data).then(
     (response) => {
-      console.log(response.data.user);
+       
+      if(response.data.token )
+      {
+          localStorage.setItem('token',response.data.token);
+      lmsg=response.data.msg;
+      console.log(response.data.msg+" "+response.data.token)
+      }
+      else if(response.data.msg)
+      {
+
+      
+      lmsg=response.data.msg;
+      console.log(response.data.msg)
+      }
+      else if(response.data.per)
+      {
+        lmsg=response.data.msg;
+      console.log(response.data.per)
+      }
     },
     (error) => {
       console.log(error);
     }
   );
+  return lmsg;
 }

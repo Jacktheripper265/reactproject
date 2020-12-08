@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormField, TextInput, Box, Button, Form, Heading } from 'grommet';
+import { FormField, TextInput, Box, Button, Form, Heading ,Text} from 'grommet';
 import { useHistory } from 'react-router-dom';
 import { MailOption, Lock } from 'grommet-icons';
 import {FindUser} from '../call/UserCall'
@@ -12,9 +12,11 @@ import {FindUser} from '../call/UserCall'
 export const ULogin = () => {
   let history=useHistory();
     const [value,setValue]=useState({email:'',password:''})
-    const HandleData=(event)=>{
+    const [message, setMessage] = useState("");
+    const HandleData=async (event)=>{
         console.log(value);
-        FindUser(value);
+        let msg= await FindUser(value);
+        setMessage(msg);
     }
  return(
      <Box align="center" justify="between" height="90vh" >
@@ -34,18 +36,20 @@ export const ULogin = () => {
               <TextInput icon={<Lock />} name="password" type="password" />
             </FormField>
 
-            {/* {message && (
-              <Box pad={{ horizontal: 'small' }}>
-                <Text color="status-error">{message}</Text>
-              </Box>
-            )} */}
+            
 
             <Box direction="row" justify="between" margin={{ top: 'medium' }}>
             <Button type="submit" label="Login" primary />
               <Button  label="Signup" onClick={()=>{history.push('/Signup')}}/>
               
             </Box>
+           
           </Form>
+          {message && (
+              <Box pad={{ horizontal: 'small' }}>
+                <Text color="#00C781">{message}</Text>
+              </Box>
+            )}
     </Box>
     </Box>
  );
