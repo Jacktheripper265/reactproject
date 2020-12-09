@@ -1,9 +1,9 @@
 
 
-export function setMsg(msg)
+export function setLog(data)
 {
     return({
-        type:"SET_MSG",
-        msg:msg
+        type:"SET_LOG",
+        data:data
     })
 }

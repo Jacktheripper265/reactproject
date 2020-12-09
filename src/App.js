@@ -3,6 +3,7 @@ import { Grommet, Footer, Box } from 'grommet';
 import { AppBar, Collapsable } from './component/StartHeader';
 import { SimpleFooter } from './component/StartFooter';
 import { Navi } from './Route/Navi';
+import ContainHeader from './container/containnavi';
 
 const theme = {
   global: {
@@ -19,7 +20,7 @@ function App() {
   return (
    <Grommet theme={theme} full={true}>
    
-    <Collapsable></Collapsable>
+    <ContainHeader></ContainHeader>
     <Navi></Navi>
    <SimpleFooter></SimpleFooter>
    </Grommet>

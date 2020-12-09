@@ -1,14 +1,15 @@
 
-const init={msg:'hi'}
+const init={islogged:false}
 const UserReducer=(state=init,action)=>
 {
     
     switch(action.type)
     {
-        case "SET_MSG":
+        case "SET_LOG":
             return{
-                ...state,msg:action.msg
+            ...state,islogged:action.data
             }
+        
         default:
             return state;
     }

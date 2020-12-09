@@ -9,19 +9,35 @@ import {FindUser} from '../call/UserCall'
 
 
 // This example shows a way to perform validation across multiple fields.
-export const ULogin = () => {
+export const ULogin = (props) => {
+  
   let history=useHistory();
+  
     const [value,setValue]=useState({email:'',password:''})
     const [message, setMessage] = useState("");
     const HandleData=async (event)=>{
         console.log(value);
         let msg= await FindUser(value);
         setMessage(msg);
-        let role=localStorage.getItem('role');
-        if(role=='admin')
+        let user=localStorage.getItem('user');
+        let parsesuser=JSON.parse(user);
+        if(parsesuser==null)
+        {
+        setMessage('permission denied')
+        }else{
+        if(parsesuser.role=='admin')
+        {
         history.push('/Admin');
+        props.setlog(true);
+        }
         else
+        {
         history.push('/Reporter');
+        props.setlog(true);
+        }
+        }
+
+
     }
  return(
      <Box align="center" justify="between" height="90vh" >

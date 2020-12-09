@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { Avatar, Button, Box, grommet, Grommet, Nav, Sidebar ,Text} from 'grommet';
+import { Avatar, Button, Box, grommet, Grommet, Nav, Sidebar ,Text, Anchor} from 'grommet';
 
 import {
   Analytics,
@@ -12,9 +12,23 @@ import {
   Projects,
   StatusInfoSmall,
   UserAdmin,
-  CircleInformation,
+  Article,
+  UserNew,
+  
 } from 'grommet-icons';
 import { Tip } from 'grommet/components/Tip';
+import AdminNav from '../Route/AdminNav';
+import { Navi } from '../Route/Navi';
+import { Link } from 'react-router-dom';
+const Circle = ({ ...rest }) => (
+    <Box
+      animation={['fadeIn', 'pulse']} // double animation
+      round="full"
+      background="linear-gradient(102.77deg, #FD6FFF -9.18%, #ffdde2 209.09%)"
+      {...rest}
+    />
+  );
+
 let role=localStorage.getItem('role');
 const SidebarHeader = () => (
   <Avatar
@@ -24,37 +38,36 @@ const SidebarHeader = () => (
   >
     
     <Tip
+          plain
+          dropProps={{ align: { left: 'right' } }}
           content={
-            <Box pad="small" gap="small" width={{ max: 'small' }}>
-              <Text weight="bold">Information</Text>
-              <>
-                <Text size="small">
-                  Admin
-                </Text>
-                <Text size="small">-Leo Tolstoy</Text>
-              </>
+            <Box align="start" margin={{ bottom: 'xlarge' }} pad="xsmall">
+              <Circle margin={{ left: 'large' }} pad="small">
+                Admin
+              </Circle>
+              <Circle margin={{ left: 'medium' }} pad="small" />
+              <Circle pad="xsmall" />
             </Box>
           }
-          dropProps={{ align: { left: 'right' } }}
         >
-          <Button icon={<UserAdmin size="large" />} />
+          <Button icon={<UserAdmin color="accent-1" size="large" />} />
         </Tip>
     
   </Avatar>
 );
 
-const SidebarFooter = () => (
-  <Nav gap="small">
-    <Button icon={<Chat />} />
-    <Button icon={<Help />} />
-  </Nav>
-);
+// const SidebarFooter = () => (
+//   <Nav gap="small">
+//     <Button icon={<Chat />} />
+//     <Button icon={<Help />} />
+//   </Nav>
+// );
 
 const MainNavigation = () => (
   <Nav gap="small">
-    <Button icon={<StatusInfoSmall />} />
-    <Button icon={<Projects />} />
-    <Button icon={<Clock />} />
+    
+   <Link to='/Admin/AdminNews'><Article /></Link>
+  <Link to='/Admin/accept'><UserNew /></Link>
     <Box pad="small" border={{ color: 'white', side: 'bottom' }} />
     <Box gap="small" pad={{ vertical: 'medium' }}>
       <Button icon={<Analytics />} />
@@ -70,10 +83,11 @@ export const adminHome = () => {
     <Sidebar
       background="accent-1"
       header={<SidebarHeader />}
-      footer={<SidebarFooter />}
+    //   footer={<SidebarFooter />}
     >
       <MainNavigation />
     </Sidebar>
+    <AdminNav></AdminNav>
   </Box>
   )
 };

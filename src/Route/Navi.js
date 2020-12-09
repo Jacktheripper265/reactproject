@@ -1,21 +1,28 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import {ULogin} from '../component/Login';
 import { SignUp } from '../component/SignUp';
 import { Box } from 'grommet';
 import { adminHome } from '../component/adminHome';
+import adminAccept from '../component/adminAccept';
+import AdminNews from '../component/AdminNews';
+import ContainLogin from '../container/containsign';
+import AdminAccept from '../component/adminAccept';
 
 
 
 
 
-export function Navi() {
+export function Navi(props) {
   return (
     <Box height='100vh'>
     <Switch>
-  <Route path="/Login" component={ULogin}></Route>
+     
+  <Route path="/Login" component={ContainLogin}></Route>
   <Route path="/Signup" component={SignUp}></Route>
   <Route path="/Admin" component={adminHome}></Route>
+ 
+
   </Switch>
   </Box>
   );

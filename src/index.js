@@ -11,11 +11,13 @@ import { Provider } from 'react-redux';
 const store=createStore(UserReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+   
     <BrowserRouter>
+    <Provider store={store}>
     <App />
-    </BrowserRouter>
     </Provider>
+    </BrowserRouter>
+  
   </React.StrictMode>,
   document.getElementById('root')
 );

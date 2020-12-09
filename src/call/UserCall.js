@@ -31,7 +31,7 @@ export async function FindUser(data) {
       if(response.data.token )
       {
           localStorage.setItem('token',response.data.token);
-          localStorage.setItem('role',response.data.role);
+          localStorage.setItem('user',JSON.stringify(response.data.user));
       lmsg=response.data.msg;
       
       console.log(response.data.msg+" "+response.data.token +'  '+ response.data.role)
@@ -54,4 +54,41 @@ export async function FindUser(data) {
     }
   );
   return lmsg;
+}
+
+
+
+
+export async function GetUser(data) {
+  let user;
+  await axios.get("http://localhost:1337/getUser").then(
+    (response) => {
+       console.log(response)
+      user=response.data.users;
+      
+    },
+    (error) => {
+      console.log(error);
+    }
+  
+  );
+  return user;
+}
+
+
+
+export async function addPermission(data) {
+ 
+  await axios.post("http://localhost:1337/setPermission",data).then(
+    (response) => {
+       console.log(response)
+     
+      
+    },
+    (error) => {
+      console.log(error);
+    }
+  
+  );
+
 }

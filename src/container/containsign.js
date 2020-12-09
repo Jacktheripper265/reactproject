@@ -1,19 +1,17 @@
 
 const { connect } = require("react-redux")
 const { SignUp } = require("../component/SignUp")
-const { RegisterUser } = require("../call/UserCall")
+const { setLog } = require("../action/action")
+const { ULogin } = require("../component/Login")
 
 
-const MapStatetoProps=(state)=>{
+
+
+const MapDispatch=(dispatch)=>{
     return{
-        msg:state.msg
+        setlog:(data)=>dispatch(setLog(data))
     }
 }
 
-
-
-const containSign=connect(MapStatetoProps)(SignUp);
-
-
-
-export default containSign;
+const ContainLogin=connect(null,MapDispatch)(ULogin);
+export default ContainLogin;
