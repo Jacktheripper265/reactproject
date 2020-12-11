@@ -19,21 +19,24 @@ export const ULogin = (props) => {
         console.log(value);
         let msg= await FindUser(value);
         setMessage(msg);
-        let user=localStorage.getItem('user');
+        let user=sessionStorage.getItem('user');
         let parsesuser=JSON.parse(user);
+        console.log(parsesuser)
         if(parsesuser==null)
         {
-        setMessage('permission denied')
+        setMessage(msg)
         }else{
         if(parsesuser.role=='admin')
         {
+          props.setlog(true);
         history.push('/Admin');
-        props.setlog(true);
+       
         }
         else
         {
+          props.setlog(true);
         history.push('/Reporter');
-        props.setlog(true);
+      
         }
         }
 

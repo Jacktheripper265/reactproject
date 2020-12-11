@@ -19,7 +19,8 @@ import {
 import { Tip } from 'grommet/components/Tip';
 import AdminNav from '../Route/AdminNav';
 import { Navi } from '../Route/Navi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const Circle = ({ ...rest }) => (
     <Box
       animation={['fadeIn', 'pulse']} // double animation
@@ -77,17 +78,27 @@ const MainNavigation = () => (
 );
 
 
-export const adminHome = () => {
-  return(
-    <Box direction="row" height={{ min: '100%' }}>
-    <Sidebar
-      background="accent-1"
-      header={<SidebarHeader />}
-    //   footer={<SidebarFooter />}
-    >
-      <MainNavigation />
-    </Sidebar>
-    <AdminNav></AdminNav>
-  </Box>
-  )
+export const AdminHome = () => {
+  let selector=useSelector(state=>state.islogged);
+  let history=useHistory();
+  console.log(selector)
+  if(selector===true)
+  {
+    return(
+      <Box direction="row" height={{ min: '100%' }}>
+      <Sidebar
+        background="accent-1"
+        header={<SidebarHeader />}
+      //   footer={<SidebarFooter />}
+      >
+        <MainNavigation />
+      </Sidebar>
+      <AdminNav></AdminNav>
+    </Box>
+    )
+  }
+  else{
+    history.replace('/Login')
+  }
+  
 };

@@ -19,11 +19,11 @@ export default function AdminHeader() {
     let dispatch=useDispatch();
     let history=useHistory();
     const logout=()=>{
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('user');
+        
         dispatch(setLog(false));
         
-        history.push('/Login')
+        history.replace('/Login')
       }
     return (
         <Grommet theme={grommet}>
@@ -41,8 +41,8 @@ export default function AdminHeader() {
               dropContent={<Box pad="large" width="100vw" background="light" justify="center">
               
               <NavLink exact to='/Admin'  style={{ color: '#FFF', textDecoration: 'none' }} activeStyle={{fontWeight: "bold",color: "red"}}><Home></Home>Home</NavLink>
-              
-               <Button onClick={logout}><Logout></Logout></Button>
+              {/* <NavLink exact onClick={logout}  style={{ color: '#FFF', textDecoration: 'none' }} activeStyle={{fontWeight: "bold",color: "red"}}><Logout></Logout>Logout</NavLink> */}
+               <Button onClick={logout}><Logout></Logout>Logout</Button>
                
                
               </Box>}

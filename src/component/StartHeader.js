@@ -14,10 +14,11 @@ import { grommet } from 'grommet/themes';
 import AdminHeader from './AdminHeader';
 import ReporterHeader from './ReporterHeader';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-const user=JSON.parse(localStorage.getItem('user'));
+
 
 
 export const Collapsable = (props) => {
+  const user=JSON.parse(sessionStorage.getItem('user'));
   let role;
   if(user!=null)
   {
